@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>ZOOM-CLONE </title>
+        <script src="https://meet.jit.si/external_api.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+        <style>
+             body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+             .navbar {
+            background-color: #0074c2; /* Background color */
+            overflow: hidden;
+        }
+         .navbar a {
+            float: left; /* Float links to the left */
+            display: block;
+            color: #fff; /* Text color */
+            text-align: center; /* Center-align text */
+            padding: 14px 16px; /* Spacing around text */
+            text-decoration: none; /* Remove underline */
+        }
+
+        /* Change link color on hover */
+        .navbar a:hover {
+            background-color: #005aa6; /* Hover color */
+        }
+             .container {
+            display: flex; /* Use flexbox to align items horizontally */
+            align-items: center; /* Center items vertically */
+        }
+
+        
+        .logo {
+            margin-right: 10px; /* Add some space between the logo and button */
+        }
+            button{
+                display: inline-block;
+            padding: 13px 10px;
+            font-size: medium;
+            background-color: #0074c2;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+             
+            
+            }
+            button a:hover {
+            background-color: #005aa6;
+        }
+        </style>
+
+        
+
+        
+    </head>
+    <body>
+         <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+        <button id="start" type="start" class=" button"  >Create Meeting</button>
+        <div id="jitsi-container"></div>
+    </div>
+    
+        
+        <script>
+            var button = document.querySelector('#start');
+            var container = document.querySelector('#jitsi-container');
+            var api = null;
+            
+
+            button.addEventListener('click', () => {
+                button.style.display = 'none'; 
+                var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var stringLength = 30;
+                function pickRandom () {
+                    return possible[Math.floor() * possible.length];
+                }
+                var randomString = Array.apply(null,Array(stringLength)).map (pickRandom).join('');
+                
+
+                var domain = "meet.jit.si";
+                var options = {
+                    "roomName": randomString,
+                    "parentNode": container,
+                    "width": 1280,
+                    "height": 800,
+                };
+                api = new JitsiMeetExternalAPI(domain, options);
+             });
+        </script>
+    </body>
+</html>
